@@ -1,0 +1,182 @@
+\documentclass[a4paper, 11pt, titlepage]{ltjsarticle}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[nobreak]{cite}
+\usepackage{listings}
+\usepackage{luatexja-preset} % LuaLaTeXで日本語を扱うためのパッケージを追加
+\usepackage{subcaption}
+
+\lstset{
+language=Python,
+numbers=left,
+breaklines=true,
+basicstyle=\ttfamily\footnotesize,
+frame=single,
+extendedchars=\true
+}
+
+\begin{document}
+
+\title{2025知能情報基礎演習\\4-2 無線通信における降⾬減衰特性のモデリング}
+\date{提出日: \today\\提出期限日: 2025年12月23日\\実験日: 2025年12月20日}
+\author{提出者氏名: 知念 拓弥\\提出者学籍番号: 245745J\\担当教員名: 宮里 智樹}
+\maketitle
+
+\tableofcontents
+\clearpage
+
+\section{1週目}
+\subsection{課題1}
+mattermostから各データをダウンロードし、中身を確認した。
+
+RxDataのファイルツリーは以下のようになっていた。
+\begin{verbatim}
+  RxData
+├── 200906
+│   ├── 20090601
+│   │   ├── 192.168.100.11_csv.log
+│   │   └── 192.168.100.9_csv.log
+│   ├── 20090602
+│   │   ├── 192.168.100.11_csv.log
+│   │   └── 192.168.100.9_csv.log
+│   ├── 20090603
+│   │   ├── 192.168.100.11_csv.log
+│   │   └── 192.168.100.9_csv.log
+…
+    ├── 20091229
+    │   ├── 192.168.100.11_csv.log
+    │   └── 192.168.100.9_csv.log
+    ├── 20091230
+    │   ├── 192.168.100.11_csv.log
+    │   └── 192.168.100.9_csv.log
+    └── 20091231
+        ├── 192.168.100.11_csv.log
+        └── 192.168.100.9_csv.log
+\end{verbatim}
+
+\clearpage
+RainDataのファイルツリーは以下のようになっていた。
+\begin{verbatim}
+RainData
+├── 20090601
+│   └── 20090601_rain.csv
+├── 20090602
+│   └── 20090602_rain.csv
+├── 20090603
+│   └── 20090603_rain.csv
+…
+├── 20091229
+│   └── 20091229_rain.csv
+├── 20091230
+│   └── 20091230_rain.csv
+└── 20091231
+    └── 20091231_rain.csv
+\end{verbatim}
+
+\subsection{課題2}
+2秒毎に記録されているRainDataの測定値と、1秒毎に記録されているRxDataの測定値をいずれも10秒おきのデータに変換した。
+
+前処理済みのデータは元のディレクトリ構成を保ったまま、RainData\_Processed, RxData\_Processedというディレクトリに保存した。
+
+言語はPythonを使用し、データの欠損値は直前のデータで補完した。
+
+Listing\ref{pg:rxprocess}にRxDataの前処理プログラム、Listing\ref{pg:rainprocess}
+
+\lstinputlisting[caption={RxDataの前処理プログラム}, label={pg:rxprocess}]{./process_RxData.py}
+
+\lstinputlisting[caption={RainDataの前処理プログラム}, label={pg:rainprocess}]{./process_RainData.py}
+
+\section{2週目}
+\subsection{手順1}
+RainData\_Processedのデータを1分間降雨強度に変換した。
+
+計算式は1分間降雨強度を$y$、雨粒のカウントを$x$としたとき、以下の式を用いた。
+\begin{align*}
+  y = x \times 0.0083333 \times 60
+\end{align*}
+
+計算に使用したプログラムをListing\ref{pg:rain1min}に示す。
+
+\lstinputlisting[caption={1分間降雨強度への変換プログラム}, label={pg:rain1min}]{./fix_RainData.py}
+
+\subsection{手順2}
+RxData\_Processedに含まれる18GHzのデータを物理量に変換する計算を行った。
+
+計算式は実際の物理量を$P$、受信電界元の値を$R$としたとき、以下の式を用いた。
+\begin{equation*}
+  P =
+  \begin{cases}
+    R \div 2 - 121 & (R \geq 0),\\
+    (R + 256) \div 2 - 121 & (R < 0).
+  \end{cases}
+\end{equation*}
+
+\clearpage
+計算に使用したプログラムをListing\ref{pg:rxphys}に示す。
+
+\lstinputlisting[caption={受信電界値を物理量に対応させるプログラム}, label={pg:rxphys}]{./fix_RxData.py}
+
+\subsection{手順3}
+頻度分布をを求めるに当たって各データの最大値・最小値を調べ、基準の数値を設定した。
+
+1時間降雨強度の最大値は143.499426[mm/h]、小数第一位で切り上げて144[mm/h]、最小値は0.0[mm/h]であった。刻み幅は3[mm/h]とした。
+
+18GHzの受信電界強度の最大値は-173.0[dB]、最小値は-229.5[dB]、小数第一位で切り上げて-230[dB]とした。刻み幅は-3[dB]とした。
+
+26GHzの受信電界強度の最大値は-166.5[dB]小数第一位で切り上げて-167[dB]とし、最小値は-220.0[dB]であった。刻み幅は-3[dB]とした。
+
+\subsection{手順4}
+前処理、単位変換が済んだRainDataから、3[mm/h]刻みの1時間降雨強度の頻度分布を求めた。
+
+同様に、RxDataから18GHzおよび26GHzの受信電界強度の頻度分布をそれぞれ-3[dB]刻みで求めた。
+
+\subsection{手順5}
+頻度分布を足し合わせ、累積分布を作成した。
+
+RainDataの1時間降雨強度の累積分布をListing\ref{pg:raincum}、18GHzの受信電界強度の累積分布をListing\ref{pg:rx18cum}、26GHzの受信電界強度の累積分布をListing\ref{pg:rx26cum}に示す。
+
+頻度分布をあらかじめpandasのDataFrameに格納し、cumsum関数を用いて累積和を計算することで累積分布を求めた。
+
+累積和賀計算されたdf["count"]の最終行の値を総サンプル数として、各行の累積和を総サンプル数で割ることで累積分布の割合を求めた。
+
+\lstinputlisting[caption={RainDataの累積時間分布作成プログラム}, label={pg:raincum}]{./plot_dist_RainData.py}
+
+\lstinputlisting[caption={18GHzのRxDataの累積時間分布作成プログラム}, label={pg:rx18cum}]{./plot_dist_RxData18.py}
+
+\lstinputlisting[caption={26GHzのRxDataの累積時間分布作成プログラム}, label={pg:rx26cum}]{./plot_dist_RxData26.py}
+
+\subsection{手順6}
+matplotlibを用いて、グラフをプロットした。累積分布を求めるプログラムはグラフプロットのプログラムと一緒に記述した。
+
+\subsection{手順7}
+横軸を時間からパーセント表記に変更した。各データの累積時間を総時間で割り、100をかけることで割合を算出した。
+
+\subsection{手順8}
+グラフの横軸を対数軸とし、片対数グラフとした。
+
+降雨強度累積時間分布を図\ref{fig:raindist}、18GHzの受信電界強度の累積時間分布を図\ref{fig:rx18dist}、26GHzの受信電界強度の累積時間分布を図\ref{fig:rx26dist}に示す。
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.9\linewidth]{./rain_dist.png}
+  \caption{1時間降雨強度の累積時間分布}
+  \label{fig:raindist}
+\end{figure}
+\clearpage
+\begin{figure}
+  \centering
+  \includegraphics[width=0.9\linewidth]{./rx_dist_18.png}
+  \caption{18GHz受信電界強度の累積時間分布}
+  \label{fig:rx18dist}
+\end{figure}
+\clearpage
+\begin{figure}
+  \centering
+  \includegraphics[width=0.9\linewidth]{./rx_dist_26.png}
+  \caption{26GHz受信電界強度の累積時間分布}
+  \label{fig:rx26dist}
+\end{figure}
+
+\end{document}
