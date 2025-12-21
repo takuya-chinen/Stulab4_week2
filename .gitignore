@@ -1,0 +1,19 @@
+
+# Ignore Python bytecode cache
+__pycache__/
+*.py[cod]
+
+# Deprecated or auxiliary folders
+deprecated_files/
+
+# Data directories (ignore raw and processed datasets)
+RainData/
+RainData_Processed/
+RainData_Processed_fix/
+RxData/
+RxData_Processed/
+RxData_Processed_fix/
+ProcessedData/
+
+# Generic data folder pattern
+data/
