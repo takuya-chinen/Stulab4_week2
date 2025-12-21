@@ -17,3 +17,5 @@ ProcessedData/
 
 # Generic data folder pattern
 data/
+
+*.png
