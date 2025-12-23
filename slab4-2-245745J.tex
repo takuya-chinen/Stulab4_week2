@@ -130,10 +130,12 @@ RxData\_Processedに含まれる18GHzのデータを物理量に変換する計�
 \subsection{手順4}
 前処理、単位変換が済んだRainDataから、3[mm/h]刻みの1時間降雨強度の頻度分布を求めた。
 
-同様に、RxDataから18GHzおよび26GHzの受信電界強度の頻度分布をそれぞれ-3[dB]刻みで求めた。
+RxDataの値は、18GHzおよび26GHzの受信電界強度の頻度分布をそれぞれ-3[dB]刻みで求めた。
 
 \subsection{手順5}
 頻度分布を足し合わせ、累積分布を作成した。
+
+RxDataについては、最大値からの差分で累積分布を求めた。
 
 RainDataの1時間降雨強度の累積分布をListing\ref{pg:raincum}、18GHzの受信電界強度の累積分布をListing\ref{pg:rx18cum}、26GHzの受信電界強度の累積分布をListing\ref{pg:rx26cum}に示す。
 
@@ -158,6 +160,7 @@ matplotlibを用いて、グラフをプロットした。累積分布を求め�
 
 降雨強度累積時間分布を図\ref{fig:raindist}、18GHzの受信電界強度の累積時間分布を図\ref{fig:rx18dist}、26GHzの受信電界強度の累積時間分布を図\ref{fig:rx26dist}に示す。
 
+\clearpage
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.9\linewidth]{./rain_dist.png}
@@ -167,14 +170,14 @@ matplotlibを用いて、グラフをプロットした。累積分布を求め�
 \clearpage
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.9\linewidth]{./rx_dist_18.png}
+  \includegraphics[width=0.9\linewidth]{./rx_dist_18_max.png}
   \caption{18GHz受信電界強度の累積時間分布}
   \label{fig:rx18dist}
 \end{figure}
 \clearpage
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.9\linewidth]{./rx_dist_26.png}
+  \includegraphics[width=0.9\linewidth]{./rx_dist_26_max.png}
   \caption{26GHz受信電界強度の累積時間分布}
   \label{fig:rx26dist}
 \end{figure}

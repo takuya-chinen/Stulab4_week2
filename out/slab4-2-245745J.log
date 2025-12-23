@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.21.0 (TeX Live 2025)  (format=lualatex 2025.5.4)  22 DEC 2025 08:08
+This is LuaHBTeX, Version 1.21.0 (TeX Live 2025)  (format=lualatex 2025.5.4)  23 DEC 2025 09:37
  restricted system commands enabled.
  file:line:error style messages enabled.
 **/Users/tutaya/Lectures/be4/ex2/slab4-2-245745J.tex
@@ -998,36 +998,38 @@ LaTeX Font Info:    Kanji font shape `JY3/HaranoAjiGothic-Medium.otf(0)/m/it' un
 (Font)              No change on input line 46.
 )
 Removing  `ltj.listings_unicode' from `process_input_buffer'.
-<./rain_dist.png, id=54, 462.528pt x 346.896pt>
+
+[11]
+<./rain_dist.png, id=57, 462.528pt x 346.896pt>
 File: ./rain_dist.png Graphic file (type png)
 <use ./rain_dist.png>
-Package luatex.def Info: ./rain_dist.png  used on input line 163.
+Package luatex.def Info: ./rain_dist.png  used on input line 166.
 (luatex.def)             Requested size: 400.97205pt x 300.74373pt.
 
 
-[11]
+[12
 
-[12<./rain_dist.png>]
-<./rx_dist_18.png, id=62, 462.528pt x 346.896pt>
-File: ./rx_dist_18.png Graphic file (type png)
-<use ./rx_dist_18.png>
-Package luatex.def Info: ./rx_dist_18.png  used on input line 170.
+<./rain_dist.png>]
+<./rx_dist_18_max.png, id=62, 462.528pt x 346.896pt>
+File: ./rx_dist_18_max.png Graphic file (type png)
+<use ./rx_dist_18_max.png>
+Package luatex.def Info: ./rx_dist_18_max.png  used on input line 173.
 (luatex.def)             Requested size: 400.97205pt x 300.74373pt.
 
 
 [13
 
-<./rx_dist_18.png>]
-<./rx_dist_26.png, id=67, 462.528pt x 346.896pt>
-File: ./rx_dist_26.png Graphic file (type png)
-<use ./rx_dist_26.png>
-Package luatex.def Info: ./rx_dist_26.png  used on input line 177.
+<./rx_dist_18_max.png>]
+<./rx_dist_26_max.png, id=67, 462.528pt x 346.896pt>
+File: ./rx_dist_26_max.png Graphic file (type png)
+<use ./rx_dist_26_max.png>
+Package luatex.def Info: ./rx_dist_26_max.png  used on input line 180.
 (luatex.def)             Requested size: 400.97205pt x 300.74373pt.
 
 
 [14
 
-<./rx_dist_26.png>] (./out/slab4-2-245745J.aux)
+<./rx_dist_26_max.png>] (./out/slab4-2-245745J.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -1039,12 +1041,12 @@ Here is how much of LuaTeX's memory you used:
  1166564,953878 words of node,token memory allocated
  1118 words of node memory still in use:
    11 hlist, 2 vlist, 5 rule, 2 glue, 4 kern, 1 glyph, 227 attribute, 54 glue_spec, 33 attribute_list, 1 write, 14 user_defined nodes
-   avail lists: 1:39,2:171455,3:434,4:28093,5:20522,6:108,7:17923,8:17,9:40514,10:39,11:1269
+   avail lists: 1:39,2:174622,3:434,4:28627,5:20868,6:108,7:17912,8:17,9:41255,10:39,11:1292
  34663 multiletter control sequences out of 65536+600000
  94 fonts using 92515783 bytes
  125i,8n,128p,1910b,930s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmmono10-italic.otf></usr/local/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmmono8-regular.otf></usr/local/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmmonolt10-bold.otf></usr/local/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman8-regular.otf></usr/local/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmmono10-regular.otf></usr/local/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans12-regular.otf></usr/local/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman10-regular.otf></usr/local/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmsans10-regular.otf></usr/local/texlive/2025/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiGothic-Medium.otf></usr/local/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman12-regular.otf></usr/local/texlive/2025/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiMincho-Regular.otf></usr/local/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmroman17-regular.otf></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on slab4-2-245745J.pdf (15 pages, 249262 bytes).
+Output written on slab4-2-245745J.pdf (15 pages, 244134 bytes).
 
 PDF statistics: 162 PDF objects out of 1000 (max. 8388607)
  97 compressed objects within 1 object stream
